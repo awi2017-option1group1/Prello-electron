@@ -1,0 +1,25 @@
+{
+  "name": "Prelectron",
+  "version": "1.0.0",
+  "description": "A notification application for Prello",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "npm run build && electron ./dist/main.js"
+  },
+  "repository": "https://github.com/awi2017-option1group1/Prello-electron",
+  "author": "Photon",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.7.8",
+    "node": "8.3.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "@types/socket.io": "^1.4.31",
+    "@types/socket.io-redis": "^1.0.22",
+    "socket.io": "^2.0.3",
+    "socket.io-redis": "^5.2.0"
+  }
+}
