@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as url from 'url'
 import { notification, publish } from './shared/notifications'
 
+
 let mainWindow: Electron.BrowserWindow
 
 function createWindow() {
