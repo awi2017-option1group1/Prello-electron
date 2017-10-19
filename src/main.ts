@@ -1,8 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
-import * as io from 'socket.io'
-import * as redis from 'socket.io-redis'
 import * as url from 'url'
+import { notification, publish } from './shared/notifications'
+
 
 let mainWindow: Electron.BrowserWindow
 
@@ -30,6 +30,7 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+  notification('boards')
 }
 
 // This method will be called when Electron has finished
