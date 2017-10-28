@@ -1,23 +1,12 @@
-import * as ioredis from 'ioredis'
-import { Notification } from 'electron'
-
-var pub = new ioredis()
-var sub = new ioredis()
-export function notification(chan: string) {
-    sub.subscribe(chan, (err: Error, count: number) => {
-        pub.publish(chan, 'This is a test')
-    })
-    sub.on('message', (channel: string, message: string) => {
-        console.log('Receive message %s from channel %s', message, channel)
-
-        let notif = new Notification({
-            title: 'Notification',
-            body: message
-          })
-        notif.show()
-      })
+export class Notification {
+    title: string
+    message: string
 }
 
-export function publish(message: string, channel: string) {
-    pub.publish(channel, message)
+export const displayNotification = (notification: Notification) => {
+    const notif = new window.Notification(notification.title, {
+        body: notification.message,
+        icon: 'https://avatars1.githubusercontent.com/u/32166471?s=200&v=4'
+    })
+    notif.onclick = () => console.log('clicked')
 }
