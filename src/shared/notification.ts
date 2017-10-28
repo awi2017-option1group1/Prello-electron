@@ -1,23 +1,35 @@
-import * as ioredis from 'ioredis'
-import { Notification } from 'electron'
+import * as io from 'socket.io-client'
 
-var pub = new ioredis()
-var sub = new ioredis()
-export function notification(chan: string) {
-    sub.subscribe(chan, (err: Error, count: number) => {
-        pub.publish(chan, 'This is a test')
+// import { Notification as NativeNotification } from 'electron'
+
+const socket = io('localhost', { 
+    path: '/realtime',
+    transports: ['websocket']
+})
+
+class Notification {
+    title: string
+    message: string
+}
+
+socket.on('connected', () => {
+
+    socket.on('authorized', () => {
+        console.log('authorized')
+
+        socket.on('notification', (notification: Notification) => {
+            console.log(notification)
+            // const nativeNotification = new NativeNotification({
+            //     title: notification.title,
+            //     body: notification.message
+            // })
+            // nativeNotification.show()
+        })
     })
-    sub.on('message', (channel: string, message: string) => {
-        console.log('Receive message %s from channel %s', message, channel)
 
-        let notif = new Notification({
-            title: 'Notification',
-            body: message
-          })
-        notif.show()
-      })
-}
-
-export function publish(message: string, channel: string) {
-    pub.publish(channel, message)
-}
+    socket.on('unauthorized', () => {
+        console.log('unauthorized')
+    })
+    
+    socket.emit('authorize', { token: '1' })
+})
