@@ -14,8 +14,6 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000') // Should use an ENV variable
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
