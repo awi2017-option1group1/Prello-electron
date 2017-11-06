@@ -2,13 +2,13 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { Container } from 'semantic-ui-react'
 
-import Board from './Board'
+import Boards from './Boards'
 
 describe('<Board />', () => {
     it('should display a Board', () => {
         const board = shallow(
             <Container>
-                <Board
+                <Boards
                     boards={[{
                         id: -1,
                         title: 'default',

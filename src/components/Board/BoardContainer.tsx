@@ -2,7 +2,7 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
 import { actionCreators as boardActionCreators } from '../../redux/boards/actions'
-import Board  from './Board'
+import Board  from './Boards'
 import { IBoard } from '../../redux/boards/types'
 import { Dispatch, RootState } from '../../redux/RootReducer'
 
