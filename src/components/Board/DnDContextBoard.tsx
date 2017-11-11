@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
 
-import Board, { BoardProps } from './Board'
+import Boards, { BoardsProps } from './Boards'
 
-const DnDContextBoard = (props2: BoardProps) => {
+const DnDContextBoard = (props2: BoardsProps) => {
     return (
         <DragDropContext onDragEnd={() => null}>
-            <Board {...props2} />
+            <Boards {...props2} />
         </DragDropContext>
     )
 }
