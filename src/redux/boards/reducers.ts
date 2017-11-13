@@ -17,8 +17,8 @@ export type State = {
 
 const defaultValue: State = {
     boards: [{
-        id: -1,
-        title: 'default',
+        id: 1,
+        name: 'default',
         notifNumber: 0,
         position: 0
     }],
@@ -48,6 +48,7 @@ export const reducer = (state: State = defaultValue, action: RootAction) => {
                 }
 
             case FETCH_BOARDS_SUCCESS:
+                action.boards.forEach(b => b.notifNumber = 0) // TODO Modify this
                 return {
                     ...state,
                     boards: action.boards,

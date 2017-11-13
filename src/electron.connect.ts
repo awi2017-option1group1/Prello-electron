@@ -13,7 +13,6 @@ function createWindow() {
 
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000') // Should use an ENV variable
-
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
@@ -40,6 +39,7 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
+
   if (mainWindow === null) {
     createWindow()
   }

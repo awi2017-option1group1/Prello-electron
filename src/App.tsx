@@ -1,15 +1,14 @@
 import * as React from 'react'
 import './App.css'
-
+import { displayNotification } from './shared/notification'
 import * as rp from 'request-promise'
-
-const logo = require('./logo.svg')
 
 class App extends React.Component {
   constructor() {
     super()
 
     this.sendNotification = this.sendNotification.bind(this)
+    displayNotification({'title': 'Title', 'message': 'The beautiful message'})
   }
 
   sendNotification() {
@@ -23,15 +22,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-
+      <div>
         <button onClick={this.sendNotification}>Send me a notification</button>
       </div>
     )

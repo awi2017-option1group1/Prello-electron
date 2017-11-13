@@ -11,12 +11,12 @@ describe('<Board />', () => {
                 <Boards
                     boards={[{
                         id: -1,
-                        title: 'default',
+                        name: 'default',
                         notifNumber: 0,
                         position: 0
                     }]}
-                    markAsRead={(index: number) => null}
                     incrementNotifNumber={(index: number) => null}
+                    loadData={() => null}
                 />
             </Container>
         )

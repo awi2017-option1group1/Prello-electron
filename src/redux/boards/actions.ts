@@ -76,7 +76,7 @@ export const actionCreators = {
         return (dispatch: Dispatch) => {
             dispatch(actionCreators.fetchBoardsRequest(userID))
             return API.get(`/users/${userID}/boards`).then(
-                boards => dispatch(actionCreators.fetchBoardsRequestSuccess(boards.boards)),
+                boards => dispatch(actionCreators.fetchBoardsRequestSuccess(boards)),
                 error => dispatch(actionCreators.fetchBoardsRequestError(error.error.error))
             )
         }

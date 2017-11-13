@@ -13,27 +13,6 @@ import './index.css'
 
 import IndexPage from './routes/IndexPage/IndexPage'
 
-import { websockets as client } from './shared/websocketClient'
-import { Notification, displayNotification } from './shared/notification'
-
-client.initialize()
-client.on('connected', () => {
-    client.on('authorized', () => {
-        console.log('authorized')
-
-        client.on('notification', (notification: Notification) => {
-            console.log(notification)
-            displayNotification(notification)
-        })
-    })
-
-    client.on('unauthorized', () => {
-        console.log('unauthorized')
-    })
-
-    client.emit('authorize', { token: '1' })
-})
-
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>

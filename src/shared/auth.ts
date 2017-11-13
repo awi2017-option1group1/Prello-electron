@@ -1,33 +1,9 @@
-type Token = string
+import { Api } from './http'
 
-class Auth {
+import { config } from '../config'
 
-    static LOCAL_STORAGE_KEY = 'me'
-
-    private userToken: Token | null
-
-    public constructor() {
-        this.userToken = localStorage.getItem(Auth.LOCAL_STORAGE_KEY)
-    }
-
-    isUserAuthenticated() {
-        return this.userToken != null
-    }
-
-    getUserToken() {
-        return this.userToken
-    }
-
-    setUserToken(token: Token) {
-        this.userToken = token
-        localStorage.setItem(Auth.LOCAL_STORAGE_KEY, token)
-    }
-
-    removeUserToken() {
-        this.userToken = null
-        localStorage.removeItem(Auth.LOCAL_STORAGE_KEY)
-    }
-
+export const getAuthUrl = () => {
+    return `${config.server.host}/${config.server.authSuffix}`
 }
 
-export const AUTH = new Auth()
+export const AUTH = new Api(getAuthUrl())
