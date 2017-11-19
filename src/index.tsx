@@ -10,6 +10,8 @@ import store, { history } from './redux/store'
 import Layout from './components/Layout/Layout'
 import { AUTH } from './shared/auth'
 
+import { requireAuth } from './components/Auth'
+
 import { actionCreators } from './redux/auth/actions'
 
 import './index.css'
@@ -37,7 +39,7 @@ ReactDOM.render(
         <ConnectedRouter history={history}>
           <Layout>
             <Switch>
-                <Route exact={true} path="/" component={IndexPage}/>
+                <Route exact={true} path="/" component={requireAuth(IndexPage)}/>
             </Switch>
           </Layout>
         </ConnectedRouter>
