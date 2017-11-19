@@ -2,8 +2,13 @@
 import { connect } from 'react-redux'
 
 import { actionCreators as boardActionCreators } from '../../redux/boards/actions'
+import { actionCreators as notifActionCreators } from '../../redux/notifications/actions'
+
 import Boards  from './Boards'
+
 import { IBoard } from '../../redux/boards/types'
+import { INotification } from '../../redux/notifications/types'
+
 import { Dispatch, RootState } from '../../redux/RootReducer'
 
 interface BoardContainerProps {
@@ -15,6 +20,7 @@ interface PropsFromState {
     boards: IBoard[]
     loading?: boolean
     error?: string | null
+    notifications: INotification[]
 }
 
 interface PropsFromDispatch {
@@ -27,14 +33,18 @@ const mapStateToProps = (state: RootState, ownProps: BoardContainerProps) => {
         boards: state.board.boards,
         loading: state.board.isProcessing,
         error: state.board.error,
-        userID: state.auth.user!.uid
+        userID: state.auth.user!.uid,
+        notifications: state.board.notifications
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: BoardContainerProps) => {
     return {
         incrementNotifNumber: (index: number) => dispatch(boardActionCreators.incrementNotifNumber(index)),
-        loadData: () => { dispatch(boardActionCreators.fetchBoard()) }
+        loadData: () => { 
+            dispatch(boardActionCreators.fetchBoard()) 
+            dispatch(notifActionCreators.fetchNotifications())
+        }
     }
 }
 
