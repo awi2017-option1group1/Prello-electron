@@ -39,4 +39,4 @@ const configs: MultiConfig = {
     }
 }
 
-export const config: Config = process.env.NODE_ENV === 'production' ? configs.production : configs.default
+export const config: Config = process.env.NODE_ENV !== 'production' ? configs.production : configs.default
