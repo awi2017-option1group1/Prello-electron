@@ -13,7 +13,7 @@ export interface BoardsProps extends StateProps {
 }
 
 // ---------------------------------------------------------------------------
-
+/*
 import { websockets as client } from '../../shared/websocketClient'
 import { Notification, displayNotification } from '../../shared/notification'
 
@@ -29,18 +29,20 @@ client.on('connected', () => {
 
     client.emit('authorize', { token: '1' })
 })
-
+*/
 // ---------------------------------------------------------------------------
 
 class Boards extends React.Component<BoardsProps> {
     constructor(props: BoardsProps) {
         super(props)
         this.props.loadData()
+        /*
         client.on('notification', (notification: Notification) => {
             console.log(notification)
             displayNotification(notification)
             this.props.incrementNotifNumber(0)
         })
+        */
     }
     render() {
         return(

@@ -24,7 +24,7 @@ class WSClient {
         if (this.isInitialized()) {
             return
         }
-        const cookies = cookie.serialize('photon', 'c4f53942-eb6e-4fcc-b6a8-41636940f148')
+        const cookies = cookie.serialize('photon', 'prello123456789')
         
         this.client = io('localhost', { 
             path: '/realtime',

@@ -85,7 +85,7 @@ describe('Board async actions', () => {
                 position: 0
             }]
         })
-        return store.dispatch(actionCreators.fetchBoard(1)).then(() => {
+        return store.dispatch(actionCreators.fetchBoard()).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         })
     })

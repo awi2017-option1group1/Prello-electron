@@ -26,14 +26,15 @@ const mapStateToProps = (state: RootState, ownProps: BoardContainerProps) => {
     return {
         boards: state.board.boards,
         loading: state.board.isProcessing,
-        error: state.board.error
+        error: state.board.error,
+        userID: state.auth.user!.uid
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: BoardContainerProps) => {
     return {
         incrementNotifNumber: (index: number) => dispatch(boardActionCreators.incrementNotifNumber(index)),
-        loadData: () => { dispatch(boardActionCreators.fetchBoard(Number(ownProps.userID))) }
+        loadData: () => { dispatch(boardActionCreators.fetchBoard()) }
     }
 }
 
