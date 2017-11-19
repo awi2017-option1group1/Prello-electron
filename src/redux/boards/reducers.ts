@@ -5,14 +5,23 @@ import {    ERROR,
             MARK_AS_READ, 
             SUCCESS } from './actions'
 
+import {    FETCH_NOTIFICATIONS, 
+            FETCH_NOTIFICATIONS_ERROR, 
+            FETCH_NOTIFICATIONS_SUCCESS } from '../notifications/actions/fetchAll'
+
+import {    DELETE_NOTIFICATIONS_ERROR, 
+            DELETE_NOTIFICATIONS_SUCCESS } from '../notifications/actions/delete'
+        
 import { RootAction } from '../RootAction'
 import { IBoard } from './types'
+import { INotification } from '../notifications/types'
 
 export type State = {
     boards: IBoard[],
     error: string | null,
     isProcessing: boolean,
     userID: number,
+    notifications: INotification[]
 }
 
 const defaultValue: State = {
@@ -22,6 +31,7 @@ const defaultValue: State = {
         notifNumber: 0,
         position: 0
     }],
+    notifications: [],
     error: null,
     isProcessing: false,
     userID: 1,
@@ -78,6 +88,43 @@ export const reducer = (state: State = defaultValue, action: RootAction) => {
                     ...state,
                     error: null,
                     isProcessing: false,
+                }
+
+            case FETCH_NOTIFICATIONS:
+                return {
+                    ...state,
+                    error: null,
+                    isProcessing: true,
+                }
+
+            case FETCH_NOTIFICATIONS_SUCCESS:
+                state.boards.map(b => 
+                b.notifNumber = action.notifications.filter(n => n.about === b.id).length)
+                return {
+                    ...state,
+                    error: null,
+                    isProcessing: false,
+                    notifications: action.notifications 
+                }
+
+            case FETCH_NOTIFICATIONS_ERROR:
+                return {
+                    ...state,
+                    error: action.error,
+                    isProcessing: false
+                }
+
+            case DELETE_NOTIFICATIONS_SUCCESS:
+                return {
+                    ...state,
+                    error: null,
+                    notifications: []
+                }
+
+            case DELETE_NOTIFICATIONS_ERROR:
+                return {
+                    ...state,
+                    error: action.error
                 }
 
             default:

@@ -1,12 +1,16 @@
 import * as React from 'react'
 
 import Board from './Board'
+
 import { IBoard } from '../../redux/boards/types'
+import { INotification } from '../../redux/notifications/types'
+
 import { StateProps } from '../StateProps'
 import App from '../../App'
 
 export interface BoardsProps extends StateProps {
     boards: IBoard[]
+    notifications: INotification[]
 
     incrementNotifNumber: (index: number) => void
     loadData: () => void

@@ -17,6 +17,7 @@ describe('<Board />', () => {
                     }]}
                     incrementNotifNumber={(index: number) => null}
                     loadData={() => null}
+                    notifications={[]}
                 />
             </Container>
         )
