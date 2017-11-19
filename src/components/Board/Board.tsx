@@ -17,9 +17,9 @@ class Board extends React.Component<BoardProps> {
                     </Card.Header>
                     Some description
                 </Card.Content>
-                <Card.Content extra>
+                <Card.Content extra={true}>
                     <span className="right floated">
-                        <Label color="blue" tag> 
+                        <Label color="blue" tag={true}> 
                         <Icon className="alarm"/>
                             {this.props.board.notifNumber} 
                         </Label>

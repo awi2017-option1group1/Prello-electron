@@ -13,7 +13,7 @@ export function requireAuth(Component: React.ReactNode) {
     
     const mapDispatchToProps = (dispatch: Dispatch) => ({
         redirect: (currentLocation: string) => {
-            window.location.replace(`/auth/login?redirect=${currentLocation}`)
+            window.location.replace(`/`)
         }
     })
     
@@ -32,7 +32,7 @@ export function requireNotAuth(Component: React.ReactNode) {
     
     const mapDispatchToProps = (dispatch: Dispatch) => ({
         redirect: (currentLocation: string) => {
-            dispatch(push(`/overview`))
+            dispatch(push(`/boards`))
         }
     })
     

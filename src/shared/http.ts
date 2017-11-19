@@ -2,6 +2,10 @@ import * as rp from 'request-promise'
 
 import { config } from '../config'
 
+import storage from './storage'
+
+export const ACCESS_TOKEN_KEY = 'photonToken'
+
 export class Api {
 
     private static DEFAULT_OPTIONS = {
@@ -53,8 +57,15 @@ export class Api {
             body: {
                 ...data
             },
-            ...options
+            ...options,
+            headers: {
+                'Authorization': `Bearer ${this.getAccessToken()}`
+            }
         }
+    }
+
+    private getAccessToken() {
+        return storage.get(ACCESS_TOKEN_KEY).token
     }
 
 }

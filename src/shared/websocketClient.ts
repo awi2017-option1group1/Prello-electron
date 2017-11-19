@@ -1,5 +1,8 @@
 import * as io from 'socket.io-client'
 import * as cookie from 'cookie'
+
+import { config } from '../config'
+
 class WSClient {
 
     private initialized: boolean
@@ -26,7 +29,7 @@ class WSClient {
         }
         const cookies = cookie.serialize('photon', 'prello123456789')
         
-        this.client = io('localhost', { 
+        this.client = io(config.server.host, { 
             path: '/realtime',
             transports: ['websocket'],
             extraHeaders: cookies
