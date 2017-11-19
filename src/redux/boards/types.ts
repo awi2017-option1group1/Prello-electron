@@ -1,6 +1,6 @@
 export type IBoard = {
     id: number,
-    title: string,
+    name: string,
     notifNumber: number,
     position: number
 }

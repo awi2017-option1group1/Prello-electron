@@ -10,7 +10,7 @@ describe('Board reducer', () => {
         expect(reducer(undefined, { type: TEST })).toEqual({
             boards: [{
                 id: -1,
-                title: 'default',
+                name: 'default',
                 notifNumber: 0,
                 position: 0
             }],
@@ -29,7 +29,7 @@ describe('Board reducer', () => {
         {
             boards: [{
                 id: -1,
-                title: 'default',
+                name: 'default',
                 notifNumber: 0,
                 position: 0
             }],
@@ -45,7 +45,7 @@ describe('Board reducer', () => {
             type: FETCH_BOARDS_SUCCESS,
             boards: [{
                 id: -1,
-                title: 'default',
+                name: 'default',
                 notifNumber: 0,
                 position: 0
             }]
@@ -53,7 +53,7 @@ describe('Board reducer', () => {
             {
                 boards: [{
                     id: -1,
-                    title: 'default',
+                    name: 'default',
                     notifNumber: 0,
                     position: 0
                 }],
@@ -72,7 +72,7 @@ describe('Board reducer', () => {
             {
                 boards: [{
                     id: -1,
-                    title: 'default',
+                    name: 'default',
                     notifNumber: 1,
                     position: 0
                 }],
@@ -91,7 +91,7 @@ describe('Board reducer', () => {
             {
                 boards: [{
                     id: -1,
-                    title: 'default',
+                    name: 'default',
                     notifNumber: 0,
                     position: 0
                 }],

@@ -1,65 +1,63 @@
 import * as React from 'react'
 
+import Board from './Board'
 import { IBoard } from '../../redux/boards/types'
 import { StateProps } from '../StateProps'
-
-import { Card, Label, Icon } from 'semantic-ui-react'
+import App from '../../App'
 
 export interface BoardsProps extends StateProps {
     boards: IBoard[]
 
-    // disableNotification: () => void TODO
-    markAsRead: (index: number) => void
     incrementNotifNumber: (index: number) => void
+    loadData: () => void
 }
 
-export interface BoardProps extends StateProps {
-    board: IBoard
-}
+// ---------------------------------------------------------------------------
+/*
+import { websockets as client } from '../../shared/websocketClient'
+import { Notification, displayNotification } from '../../shared/notification'
 
-class Board extends React.Component<BoardProps> {
-    render() {
-        return(
-            <Card>
-                <Card.Content>
-                    <Card.Header>
-                        {this.props.board.title}
-                    </Card.Header>
-                    Some description
-                </Card.Content>
-                <Card.Content extra>
-                    <span className="right floated">
-                        <Label color="blue" tag> 
-                        <Icon className="alarm"/>
-                            {this.props.board.notifNumber} 
-                        </Label>
-                    </span>
-                </Card.Content>
-            </Card>
-        )
-    }
-}
+client.initialize()
+client.on('connected', () => {
+    client.on('authorized', () => {
+        console.log('authorized')
+    })
+
+    client.on('unauthorized', () => {
+        console.log('unauthorized')
+    })
+
+    client.emit('authorize', { token: '1' })
+})
+*/
+// ---------------------------------------------------------------------------
 
 class Boards extends React.Component<BoardsProps> {
-    componentWillMount() {
-        this.props.loadData!()
+    constructor(props: BoardsProps) {
+        super(props)
+        this.props.loadData()
+        /*
+        client.on('notification', (notification: Notification) => {
+            console.log(notification)
+            displayNotification(notification)
+            this.props.incrementNotifNumber(0)
+        })
+        */
     }
-
-    render() {// TODO : A FOR EACH
+    render() {
         return(
                <div>
-                    {this.props.boards.sort((a, b) => a.position - b.position).map(board => 
-                        <Board key={board.title} board={board}/>
+                    {
+                        this.props.boards.sort((a, b) => a.position - b.position).map(board => 
+                        <Board key={board.name} board={board}/>
                     )}
+                    {
+
+                    }
+                    {console.log(this.props.boards)}
+                    <App />
                 </div>
         )
     }
 }
-
-const boardConst = (props: BoardsProps) => {
-    return (
-    <Boards {...props} />
-    )
-}
-
-export default boardConst
+export default Boards

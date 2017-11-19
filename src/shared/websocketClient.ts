@@ -1,5 +1,5 @@
 import * as io from 'socket.io-client'
-
+import * as cookie from 'cookie'
 class WSClient {
 
     private initialized: boolean
@@ -9,15 +9,27 @@ class WSClient {
         this.initialized = false
         this.client = null
     }
-
+    /**
+     * client.on('connected', () => {
+     *  client.on('authorized', () => {
+     *      client.on('update-list', (list) => { store.dispatch(...) })
+     *  })
+     * 
+     *  client.on('unauthorized', () => {})
+     * 
+     *  client.emit('authorize', { token: 'accessToken' })
+     * })
+     */
     public initialize() {
         if (this.isInitialized()) {
             return
         }
-
+        const cookies = cookie.serialize('photon', 'prello123456789')
+        
         this.client = io('localhost', { 
             path: '/realtime',
-            transports: ['websocket']
+            transports: ['websocket'],
+            extraHeaders: cookies
         })
 
         this.initialized = true

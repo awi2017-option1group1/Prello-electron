@@ -2,6 +2,7 @@ import { API } from '../../shared/http'
 import { Dispatch } from '../RootReducer'
 import { IBoard } from './types'
 // import { init, publish } from '../../shared/notification'
+import { RootState } from '../RootReducer'
 
 export const SUCCESS = 'SUCCESS'
 export const ERROR = 'ERROR'
@@ -72,11 +73,13 @@ export const actionCreators = {
     // --------------------------------------- //
     //                   ASYNC                 //
     // --------------------------------------- //
-    fetchBoard: (userID: number) => {
-        return (dispatch: Dispatch) => {
-            dispatch(actionCreators.fetchBoardsRequest(userID))
-            return API.get(`/users/${userID}/boards`).then(
-                boards => dispatch(actionCreators.fetchBoardsRequestSuccess(boards.boards)),
+    fetchBoard: () => {
+        return (dispatch: Dispatch, getState: () => RootState) => {
+            const state = getState()
+            const connectedUser = state.auth.user!
+            dispatch(actionCreators.fetchBoardsRequest(connectedUser.uid))
+            return API.get(`/users/${connectedUser.uid}/boards`).then(
+                boards => dispatch(actionCreators.fetchBoardsRequestSuccess(boards)),
                 error => dispatch(actionCreators.fetchBoardsRequestError(error.error.error))
             )
         }
